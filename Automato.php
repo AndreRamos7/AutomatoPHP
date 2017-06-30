@@ -66,8 +66,9 @@ class Automato {
     }
     
     public function setEstado($estadoId) {
-       array_push($this->estados,new Estado($estadoId, "", "q".$estadoId));
-	   //var_dump($this->estados);
+       array_push($this->estados, new Estado($estadoId, "", "q".$estadoId));
+	//var_dump($this->estados);
+        
     }    
     
      public function getEstado($idEstado){
@@ -94,14 +95,17 @@ class Automato {
        $origem = $this->estados[$originId];
        $destino = $this->estados[$destiny];               
        array_push($this->transicao, new Transicao($origem, $destino, $symbol, $symbolMealy)); 
+       //var_dump($this->transicao);
+       //echo "===========================================================================";
       
     }
     public function getTransition($originId, $symbol) {
         //$tr = new Transicao();
-		foreach ($this->transicao as $keyTr => $valueTr) {
-            $tr = $valueTr;
-            if(($tr->getSimbolo() == $symbol) && ($tr->getOrigem()->getId() == $originId)){
-               return $tr;
+	for ($index = 0; $index < count($this->transicao); $index++) {
+          // echo " >>>>>>>>> ".$this->transicao[$index]->getSimbolo();
+            
+            if(($this->transicao[$index]->getSimbolo() == "$symbol") && ($this->transicao[$index]->getOrigem()->getId() == $originId)){
+               return $this->transicao[$index];
             } 
         }    
         return null;

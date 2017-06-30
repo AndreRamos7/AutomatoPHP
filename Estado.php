@@ -11,7 +11,7 @@ class Estado {
     private $name;
     private $label;
     
-    public function __construct($id = null, $name = "Estado simples", $label = null) {
+    public function __construct($id = null, $name = null, $label = null) {
         $this->id = $id;
         $this->name = "Estado simples";
         $this->label = $label;

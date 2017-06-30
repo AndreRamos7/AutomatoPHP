@@ -11,7 +11,7 @@ class Transicao {
     private $symbolMealy;
     public $simbolo;
     
-    public function __construct(Estado $origem, Estado $destino, $symbolMealy, $simbolo) {
+    public function __construct(Estado $origem, Estado $destino, $simbolo, $symbolMealy) {
         $this->origem = $origem;
         $this->destino = $destino;
         $this->symbolMealy = $symbolMealy;
