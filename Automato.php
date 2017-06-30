@@ -1,5 +1,8 @@
 <?php
 
+//require("Estado.php");
+
+
 /**
  * Description of Automato
  *
@@ -56,14 +59,15 @@ class Automato {
     }
 
     public function setEstadosFinais($estadoFinalId) {
-        
-        $estado = $this->estados[$estadoFinalId];
+       
+        $estado =  $this->estados[$estadoFinalId];
         $estado->setName("Estado final");
         array_push($this->estadosFinais, $estado);      
     }
     
     public function setEstado($estadoId) {
-       array_push($this->estados,array("$estadoId" => new Estado($estadoId, "", "q".$estadoId)));
+       array_push($this->estados,new Estado($estadoId, "", "q".$estadoId));
+	   //var_dump($this->estados);
     }    
     
      public function getEstado($idEstado){
@@ -86,17 +90,17 @@ class Automato {
     public function getStartState() {
         return $this->startState;
     }
-    public function setTransitionMealy($origin, $destiny, $symbol,  $symbolMealy) {
-       $origem = $this->estados[$origin];
+    public function setTransitionMealy($originId, $destiny, $symbol,  $symbolMealy) {
+       $origem = $this->estados[$originId];
        $destino = $this->estados[$destiny];               
        array_push($this->transicao, new Transicao($origem, $destino, $symbol, $symbolMealy)); 
       
     }
     public function getTransition($originId, $symbol) {
-        $tr = new Transicao();
-	foreach ($this->transicao as $keyTr => $valueTr) {
+        //$tr = new Transicao();
+		foreach ($this->transicao as $keyTr => $valueTr) {
             $tr = $valueTr;
-            if(($tr->getSimbolo() == symbol) && ($tr->getOrigem()->getId() == $originId)){
+            if(($tr->getSimbolo() == $symbol) && ($tr->getOrigem()->getId() == $originId)){
                return $tr;
             } 
         }    

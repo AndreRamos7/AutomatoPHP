@@ -1,6 +1,4 @@
 <?php
-
-
 /**
  * Description of Estado
  *
@@ -13,7 +11,7 @@ class Estado {
     private $name;
     private $label;
     
-    public function __construct($id, $name, $label) {
+    public function __construct($id = null, $name = "Estado simples", $label = null) {
         $this->id = $id;
         $this->name = "Estado simples";
         $this->label = $label;
