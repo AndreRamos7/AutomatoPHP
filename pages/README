@@ -1,0 +1,10 @@
+Equivalência entre as páginas e estados do autômato
+
+action-selection.php -> q2
+business-plan.php -> qBP
+business-plan-parametrization.php -> q3
+document.php -> não tem no autômato
+document-selection.php -> q4
+game.php -> qG
+game-parametrization.php -> q5
+login.php -> q1
