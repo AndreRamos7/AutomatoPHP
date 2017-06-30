@@ -1,21 +1,17 @@
 <?php 
+session_name("AutomatoPHP");
+session_start();
+
+
+
+
 require("Automato.php");
 require("Estado.php");
 require("Transicao.php");
 
 
-?>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>aaaaaa</title>
-    </head>
-    <body>
-        <?php
-            $automato = new Automato();
-        // faz a leitura da palavra a ser reconhecid
-        //String symbol = "1110011";
+        $automato = new Automato();
+    
         
         $symbol = array ("25", "100", "50", "25", "100", "50", "50");
         
@@ -50,46 +46,61 @@ require("Transicao.php");
         $automato->setTransitionMealy(3, 0,"25","document-selection.php");
         $automato->setTransitionMealy(3, 3,"100","document-selection.php");
         
+        //$_SESSION['AUTOMATO'] = $automato;
+                
+        //$_SESSION['ESTADO_ATUAL'] = 0;
+        $evento = filter_input(INPUT_GET, "link");
         
-               
-        $transition;
-        $destiny;
+        $arrSymbol[0] = $evento;//str_split($symbol);
+        $i = 0;    
         
-        $i = 0;
-        $originId = 0;
-        $arrSymbol = $symbol;//str_split($symbol);
         
-        while($i < count($arrSymbol)) {            
+        //while($i < count($arrSymbol)) {            
 
-            print("Do estado q$originId "  );
-            $transition = $automato->getTransition($originId, $arrSymbol[$i] );
+            print("Do estado q{$_SESSION['ESTADO_ATUAL']} "  );
+            $_SESSION['TRANSICAO'] = $automato->getTransition($_SESSION['ESTADO_ATUAL'], $arrSymbol[$i] );
 
-            if($transition == null){
-                print(" NÃO existe transições para o símbolo \"" . $arrSymbol[$i]  . "\" então trava o automato ");
-                break;
+            if($_SESSION['TRANSICAO'] == null){
+                die(" NÃO existe transições para o símbolo \"" . $arrSymbol[$i]  . "\" então trava o automato ");
+                //break;
             }
-           // $saida = (($transition->getSymbolMealy() == "1") ? "1 Lata Liberada!": "NENHUMA Lata Liberada!");
+           // $saida = (($_SESSION['TRANSICAO']->getSymbolMealy() == "1") ? "1 Lata Liberada!": "NENHUMA Lata Liberada!");
             
            
-            
-            $destiny = $transition->getDestino();
-            $originId = $destiny->getId();
+            $_SESSION['DESTINO'] = $_SESSION['TRANSICAO']->getDestino();
+            $_SESSION['ESTADO_ATUAL'] = $_SESSION['DESTINO']->getId();
             
             print("leu o símbolo " .
                                 $arrSymbol[$i] .
                                 " foi para o " . 
-                                $automato->getEstado($originId)->getName() .
-                                " - " .$automato->getEstado($originId)->getLabel(). ": Saída:");
-             require "pages/".$transition->getSymbolMealy();
+                                $automato->getEstado($_SESSION['ESTADO_ATUAL'])->getName() .
+                                " - " .$automato->getEstado($_SESSION['ESTADO_ATUAL'])->getLabel(). ": Saída:");
+             require "pages/".$_SESSION['TRANSICAO']->getSymbolMealy();
+             
              echo "</br>";
-            $i++;
-
-        }
+            //$i++;
+           
+        //}
         // Exibe o estado em que o autômato se encontra ao final da leitura da palavra. 
         //estadoFinalDeAutomato(symbol, automato, originId);
         
-        
-        
-        ?>
+?>
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+    </head>
+    <body>
+        <a href="?link=25">25</a></br>
+        <a href="?link=50">50</a></br>
+        <a href="?link=100">100</a></br>
     </body>
 </html>
+        
+<?php
+echo "<pre>";
+    print_r($_SESSION);
+echo "<pre>";
+
+   

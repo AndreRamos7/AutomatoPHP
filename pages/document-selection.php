@@ -14,7 +14,7 @@
     <body>
         <?php
         // put your code here
-        echo "LATA";
+        echo "<b>LATA</b>";
         ?>
     </body>
 </html>

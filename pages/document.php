@@ -14,7 +14,7 @@
     <body>
         <?php
         // put your code here
-        echo "Sem LAta";
+        echo "<b>Sem LAta</b>";
         ?>
     </body>
 </html>
