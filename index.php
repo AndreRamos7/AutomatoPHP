@@ -2,9 +2,6 @@
 session_name("AutomatoPHP");
 session_start();
 
-
-
-
 require("Automato.php");
 require("Estado.php");
 require("Transicao.php");
@@ -15,36 +12,27 @@ require("Transicao.php");
         
         $symbol = array ("25", "100", "50", "25", "100", "50", "50");
         
-        $automato->setEstado(0);
-        $automato->setEstado(1);
-        $automato->setEstado(2);
-        $automato->setEstado(3);
+        $automato->setEstado("login.php");
+        $automato->setEstado("action-selection.php");
+        $automato->setEstado("business-plan-parametrization.php");
+        $automato->setEstado("document-selection.php");
+        
+        $automato->setEstado("game-parametrization.php");
+        $automato->setEstado("game.php");
+        $automato->setEstado("business-plan.php");
+        $automato->setEstado("document.php");
 
         // Definindo qual estado é Inicial e quais são estados Finais 
-        $automato->setEstadoInicial(0);
+        $automato->setEstadoInicial("login.php");
         
-        $automato->setEstadosFinais(0);
-        $automato->setEstadosFinais(1);
-        $automato->setEstadosFinais(2);
-        $automato->setEstadosFinais(3);
+        $automato->setEstadosFinais("document-selection.php");
+        $automato->setEstadosFinais("game.php");        
+        $automato->setEstadosFinais("business-plan.php");
+     
         
         // Definindo todas as transições do autômato 
         // (origem, destino, simbolo,paraImprimir) 
-        $automato->setTransitionMealy(0, 1,"25","document.php");
-        $automato->setTransitionMealy(0, 2,"50","document.php");
-        $automato->setTransitionMealy(0, 0,"100","document-selection.php");
-        
-        $automato->setTransitionMealy(1, 2,"25","document.php");
-        $automato->setTransitionMealy(1, 3,"50","document.php");
-        $automato->setTransitionMealy(1, 1,"100","document-selection.php");
-        
-        $automato->setTransitionMealy(2, 3,"25","document.php");
-        $automato->setTransitionMealy(2, 0,"50","document-selection.php");
-        $automato->setTransitionMealy(2, 2,"100","document-selection.php");
-        
-        $automato->setTransitionMealy(3, 1,"50","document-selection.php");
-        $automato->setTransitionMealy(3, 0,"25","document-selection.php");
-        $automato->setTransitionMealy(3, 3,"100","document-selection.php");
+        $automato->setTransition("pagina0.php", 1,"25","");
         
         //$_SESSION['AUTOMATO'] = $automato;
                 
@@ -75,7 +63,8 @@ require("Transicao.php");
                                 " foi para o " . 
                                 $automato->getEstado($_SESSION['ESTADO_ATUAL'])->getName() .
                                 " - " .$automato->getEstado($_SESSION['ESTADO_ATUAL'])->getLabel(). ": Saída:");
-             require "pages/".$_SESSION['TRANSICAO']->getSymbolMealy();
+            
+            require "pages/".$_SESSION['ESTADO_ATUAL']->getId();
              
              echo "</br>";
             //$i++;

@@ -91,7 +91,7 @@ class Automato {
     public function getStartState() {
         return $this->startState;
     }
-    public function setTransitionMealy($originId, $destiny, $symbol,  $symbolMealy) {
+    public function setTransition($originId, $destiny, $symbol,  $symbolMealy) {
        $origem = $this->estados[$originId];
        $destino = $this->estados[$destiny];               
        array_push($this->transicao, new Transicao($origem, $destino, $symbol, $symbolMealy)); 
