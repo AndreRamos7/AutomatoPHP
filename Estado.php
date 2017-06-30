@@ -15,10 +15,10 @@ class Estado {
     
     public function __construct($id, $name, $label) {
         $this->id = $id;
-        $this->name = $name;
+        $this->name = "Estado simples";
         $this->label = $label;
     }
-    
+   
     public function getId() {
         return $this->id;
     }

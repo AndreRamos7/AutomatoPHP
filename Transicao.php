@@ -20,10 +20,6 @@ class Transicao {
         $this->simbolo = $simbolo;
     }
     
-    
-    
-    
-    
     public function getOrigem() {
         return $this->origem;
     }
@@ -41,6 +37,7 @@ class Transicao {
     }
 
     public function setOrigem($origem) {
+        
         $this->origem = $origem;
     }
 

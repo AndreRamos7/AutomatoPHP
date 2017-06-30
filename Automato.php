@@ -11,6 +11,11 @@ class Automato {
     private $estados;
     private $estadosFinais;
     private  $estadosIniciais;
+    /**
+     *
+     * @var Array
+     * Array com um conjunto de transicoes do automato 
+     */
     private  $transicao;
     
     private $startState;
@@ -36,17 +41,11 @@ class Automato {
         return $this->estadosFinais;
     }
 
-    public function getEstadosIniciais() {
-        return $this->estadosIniciais;
-    }
-
+   
     public function getTransicao() {
         return $this->transicao;
     }
 
-    public function getStartState() {
-        return $this->startState;
-    }
 
     public function getStartStateLimit() {
         return $this->startStateLimit;
@@ -56,51 +55,51 @@ class Automato {
         return $this->finalStates;
     }
 
-    public function setEstado($estadoId) {
-       array_push($this->estados,array("$estadoId" => new Estado($estadoId, "", "q".$estadoId)));
-    }
-
     public function setEstadosFinais($estadoFinalId) {
-        //$this->estadosFinais
+        
         $estado = $this->estados[$estadoFinalId];
         $estado->setName("Estado final");
         array_push($this->estadosFinais, $estado);      
     }
-   
-    public function getTransition($origin, $symbol) {
-        $this->transicao;
-        //$this->transicao
-	while (iterator.hasNext()) {
-          //   Transicao tr = iterator.next();
-            // System.out.println("if " + tr.getSimbolo() + " == " + symbol + " && " + tr.getOrigem().getId() + " == " + origin);
-             if((tr.getSimbolo().equals(symbol)) && (tr.getOrigem().getId() == origin)){
-                 
-                 return tr;
-             } 
+    
+    public function setEstado($estadoId) {
+       array_push($this->estados,array("$estadoId" => new Estado($estadoId, "", "q".$estadoId)));
+    }    
+    
+     public function getEstado($idEstado){
+        return $this->estados[$idEstado];
+    }
+    public function getEstadosIniciais() {
+        return $this->estadosIniciais;
+    }
+    
+    public function setEstadoInicial($estadoInicial) {
+        $this->estadoInicial = $estadoInicial;
+    }
+    public function isFinalState($id) {
+        if($this->estados[$id]->getName() == "Estado final"){
+            return true;
+        }
+        return false;
+    }
+    
+    public function getStartState() {
+        return $this->startState;
+    }
+    public function setTransitionMealy($origin, $destiny, $symbol,  $symbolMealy) {
+       $origem = $this->estados[$origin];
+       $destino = $this->estados[$destiny];               
+       array_push($this->transicao, new Transicao($origem, $destino, $symbol, $symbolMealy)); 
+      
+    }
+    public function getTransition($originId, $symbol) {
+        $tr = new Transicao();
+	foreach ($this->transicao as $keyTr => $valueTr) {
+            $tr = $valueTr;
+            if(($tr->getSimbolo() == symbol) && ($tr->getOrigem()->getId() == $originId)){
+               return $tr;
+            } 
         }    
         return null;
     }
-
-    public function setEstadosIniciais($estadosIniciais) {
-        $this->estadosIniciais = $estadosIniciais;
-    }
-
-    public function setTransicao($transicao) {
-        $this->transicao = $transicao;
-    }
-
-    public function setStartState($startState) {
-        $this->startState = $startState;
-    }
-
-    public function setStartStateLimit($startStateLimit) {
-        $this->startStateLimit = $startStateLimit;
-    }
-
-    public function setFinalStates($finalStates) {
-        $this->finalStates = $finalStates;
-    }
-
-
-
 }
