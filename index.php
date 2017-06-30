@@ -31,24 +31,24 @@ require("Transicao.php");
         $automato->setEstadosFinais(1);
         $automato->setEstadosFinais(2);
         $automato->setEstadosFinais(3);
-        //int finalStates[] = {1};
+        
         // Definindo todas as transições do autômato 
         // (origem, destino, simbolo,paraImprimir) 
-        $automato->setTransitionMealy(0, 1,"25","0");
-        $automato->setTransitionMealy(0, 2,"50","0");
-        $automato->setTransitionMealy(0, 0,"100","1");
+        $automato->setTransitionMealy(0, 1,"25","document.php");
+        $automato->setTransitionMealy(0, 2,"50","document.php");
+        $automato->setTransitionMealy(0, 0,"100","document-selection.php");
         
-        $automato->setTransitionMealy(1, 2,"25","0");
-        $automato->setTransitionMealy(1, 3,"50","0");
-        $automato->setTransitionMealy(1, 1,"100","1");
+        $automato->setTransitionMealy(1, 2,"25","document.php");
+        $automato->setTransitionMealy(1, 3,"50","document.php");
+        $automato->setTransitionMealy(1, 1,"100","document-selection.php");
         
-        $automato->setTransitionMealy(2, 3,"25","0");
-        $automato->setTransitionMealy(2, 0,"50","1");
-        $automato->setTransitionMealy(2, 2,"100","1");
+        $automato->setTransitionMealy(2, 3,"25","document.php");
+        $automato->setTransitionMealy(2, 0,"50","document-selection.php");
+        $automato->setTransitionMealy(2, 2,"100","document-selection.php");
         
-        $automato->setTransitionMealy(3, 1,"50","1");
-        $automato->setTransitionMealy(3, 0,"25","1");
-        $automato->setTransitionMealy(3, 3,"100","1");
+        $automato->setTransitionMealy(3, 1,"50","document-selection.php");
+        $automato->setTransitionMealy(3, 0,"25","document-selection.php");
+        $automato->setTransitionMealy(3, 3,"100","document-selection.php");
         
         
                
@@ -68,7 +68,9 @@ require("Transicao.php");
                 print(" NÃO existe transições para o símbolo \"" . $arrSymbol[$i]  . "\" então trava o automato ");
                 break;
             }
-            $saida = (($transition->getSymbolMealy() == 1) ? "1 Lata Liberada!": "NENHUMA Lata Liberada!");
+           // $saida = (($transition->getSymbolMealy() == "1") ? "1 Lata Liberada!": "NENHUMA Lata Liberada!");
+            
+           
             
             $destiny = $transition->getDestino();
             $originId = $destiny->getId();
@@ -77,7 +79,9 @@ require("Transicao.php");
                                 $arrSymbol[$i] .
                                 " foi para o " . 
                                 $automato->getEstado($originId)->getName() .
-                                " - " .$automato->getEstado($originId)->getLabel(). ": Saída:  $saida<br>");
+                                " - " .$automato->getEstado($originId)->getLabel(). ": Saída:");
+             require "pages/".$transition->getSymbolMealy();
+             echo "</br>";
             $i++;
 
         }
