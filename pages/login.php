@@ -1,4 +1,5 @@
 <?php
+/*
 require "../afd/Estado.php";
 require "../afd/Transicao.php";
 require "../afd/Automato.php";
@@ -19,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header("Location: http://docker02/pages/action-selection.php");
     }
 }
-
+*/
 ?>
 <html>
     <head>
@@ -27,6 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <title></title>
     </head>
     <body>
+        <h3>login</h3>
         <form action="/pages/login.php" method="post">
             <select name="perfil">
                 <option value="student">Estudante</option>

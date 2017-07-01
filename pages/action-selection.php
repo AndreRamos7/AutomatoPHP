@@ -14,6 +14,8 @@
     </head>
     <body>
         <?php
+        
+            echo "<h3>Action-section</h3>";
         ?>
     </body>
 </html>

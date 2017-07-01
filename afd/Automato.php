@@ -25,7 +25,7 @@ class Automato {
         $this->startState = array();
         $this->startStateLimit = array();
         $this->finalStates = array();
-
+/*
         $this->setEstado(0);//"/pages/login.php");
         $this->setEstado(1);//"/pages/action-selection.php");
         $this->setEstado(2);//"/pages/business-plan-parametrization.php");
@@ -42,6 +42,8 @@ class Automato {
         $this->setEstadosFinais(7);//"/pages/business-plan.php");
 
         $this->setTransition(0, 1,"e1");
+ * 
+ */
     }
     
     public function getEstados() {
@@ -73,8 +75,10 @@ class Automato {
     }
     
     public function setEstado($estadoId) {
-       array_push($this->estados, new Estado($estadoId, $estadoId, $estadoId));
-        
+       $this->estados[$estadoId] = new Estado($estadoId, $estadoId, $estadoId);
+      // echo "<pre>";
+        //    print_r($this->estados);
+        //echo "<pre></br>==================";
     }    
     
      public function getEstado($idEstado){
@@ -104,8 +108,9 @@ class Automato {
 
     }
     public function getTransition($originId, $symbol) {
-	    for ($index = 0; $index < count($this->transicao); $index++) {
-            if(($this->transicao[$index]->getSimbolo() == "$symbol") && ($this->transicao[$index]->getOrigem()->getId() == $originId)){
+         
+        for ($index = 0; $index < count($this->transicao); $index++) {
+            if(($this->transicao[$index]->getSimbolo() == "$symbol") && ($this->transicao[$index]->getOrigem()->getId() == "$originId")){
                return $this->transicao[$index];
             } 
         }    
