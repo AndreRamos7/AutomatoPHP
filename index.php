@@ -89,7 +89,7 @@ require("Transicao.php");
         
 <?php
 echo "<pre>";
-    print_r($_SESSION);
+//    print_r($_SESSION);
 echo "<pre>";
 
    
