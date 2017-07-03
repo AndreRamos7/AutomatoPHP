@@ -1,10 +1,18 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: gilson
- * Date: 30/06/17
- * Time: 11:03
- */
+
+require "../afd/Estado.php";
+require "../afd/Transicao.php";
+require "../afd/Automato.php";
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $automato = new Automato();
+    $automato = $automato->getAutomatoPageFlow();
+    $next = $automato->getTransition($_SERVER['PHP_SELF'], $_POST['evento']);
+
+    if($next != null) {
+        header("Location: http://localhost" . $next->getDestino()->getId());
+    }
+}
 
 ?>
 <html>
@@ -12,10 +20,20 @@
         <meta charset="UTF-8">
         <title>Action</title>
     </head>
-    <body>
-        <?php
-        
-            echo "<h3>Action-section</h3>";
-        ?>
-    </body>
+    <h3>Action Selection</h3>
+    <form action="/pages/action-selection.php" method="post">
+        <select name="evento">
+            <option value="e3">Business Plan Parametrization</option>
+            <option value="e4">Game Parametrization</option>
+            <option value="e5">Document Selection</option>
+        </select>
+        <button type="submit">Selecionar</button>
+        <br>
+        <br>
+    </form>
+
+    <form action="/pages/action-selection.php" method="post">
+        <input type="hidden" name="evento" value="e2">
+        <button type="submit">Sair</button>
+    </form>
 </html>

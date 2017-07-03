@@ -45,6 +45,40 @@ class Automato {
  * 
  */
     }
+
+    public function getAutomatoPageFlow() {
+        $automato = new Automato();
+
+        $automato->setEstado("/pages/login.php"); //1
+        $automato->setEstado("/pages/action-selection.php"); //2
+        $automato->setEstado("/pages/business-plan-parametrization.php"); //3
+        $automato->setEstado("/pages/document-selection.php"); //4
+
+        $automato->setEstado("/pages/game-parametrization.php"); //5
+        $automato->setEstado("/pages/game.php"); //6
+        $automato->setEstado("/pages/business-plan.php"); //7
+        $automato->setEstado("/pages/document.php"); //8
+
+        // Definindo qual estado é Inicial e quais são estados Finais
+        $automato->setEstadoInicial("/pages/login.php");
+        $automato->setEstadosFinais("/pages/document-selection.php");
+        $automato->setEstadosFinais("/pages/game.php");
+        $automato->setEstadosFinais("/pages/business-plan.php");
+
+
+        // Definindo todas as transições do autômato
+        // (origem, destino, simbolo)
+        $automato->setTransition("/pages/login.php", "/pages/action-selection.php","e1"); //login
+
+        $automato->setTransition("/pages/action-selection.php", "/pages/business-plan-parametrization.php","e3");
+        $automato->setTransition("/pages/action-selection.php", "/pages/login.php","e2"); //logout
+        $automato->setTransition("/pages/action-selection.php", "/pages/game-parametrization.php","e4"); //indo para games
+        $automato->setTransition("/pages/action-selection.php", "/pages/document-selection.php","e5");
+
+        $automato->setTransition("/pages/document-selection.php", "/pages/action-selection.php", "e6");
+
+        return $automato;
+    }
     
     public function getEstados() {
         return $this->estados;

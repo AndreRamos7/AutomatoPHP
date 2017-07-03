@@ -1,26 +1,21 @@
 <?php
-/*
+
 require "../afd/Estado.php";
 require "../afd/Transicao.php";
 require "../afd/Automato.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-
     $automato = new Automato();
-//    $next = $automato->getTransition($_SERVER['PHP_SELF'], "e1");
-    $next = $automato->getTransition(0, "e1");
+    $automato = $automato->getAutomatoPageFlow();
+    $next = $automato->getTransition($_SERVER['PHP_SELF'], "e1");
 
     if($next != null) {
         session_start();
-
         $_SESSION['perfil'] = $_POST['perfil'];
-
-        //redirect to next.getDestino.getId
-        header("Location: http://docker02/pages/action-selection.php");
+        header("Location: http://localhost" . $next->getDestino()->getId());
     }
 }
-*/
+
 ?>
 <html>
     <head>
