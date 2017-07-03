@@ -14,7 +14,7 @@
     <body>
         <?php
         
-            echo "<h3>business-parametrization</h3>";
+            echo "<h3>game-parametrization</h3>";
         ?>
     </body>
 </html>
