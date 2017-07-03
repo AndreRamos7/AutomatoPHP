@@ -10,11 +10,9 @@ require "afd/Automato.php";
             $_SESSION['ESTADO_ATUAL'] = "login.php";
         }
 
+        echo count($_SESSION)."<br/>";
         $automato = new Automato();
     
-        
-        $symbol = array ("25", "100", "50", "25", "100", "50", "50");
-        
         $automato->setEstado("login.php"); //1
         $automato->setEstado("action-selection.php"); //2
         $automato->setEstado("business-plan-parametrization.php"); //3
@@ -53,7 +51,10 @@ require "afd/Automato.php";
         $_SESSION['TRANSICAO'] = $automato->getTransition($_SESSION['ESTADO_ATUAL'], $evento );
 
         if($_SESSION['TRANSICAO'] == null){
-            die(" NÃO existe transições para o símbolo \"" . $evento  . "\" então trava o automato ");
+            session_unset();
+            unset($_SESSION);
+            
+            die(" NÃO existe transições para o símbolo \"" . $evento  . "\" então trava o automato<br/> <a href='?link=e0'>e0</a>");
         }
 
       
@@ -117,6 +118,7 @@ require "afd/Automato.php";
             <a href="?link=e4">e4</a>
             <a href="?link=e5">e5</a>
             <a href="?link=e6">e6</a>
+            <a href="./pages/apagar.php">apagar Sessao</a>
         </div>
         
         <div id="conteudo">
@@ -131,7 +133,8 @@ require "afd/Automato.php";
         
 <?php
 echo "<pre>";
-    print_r($automato->getTransicao());
+
+    print_r(session_get_cookie_params());
 echo "<pre>";
 
    
