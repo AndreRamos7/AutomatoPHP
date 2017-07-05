@@ -2,11 +2,10 @@
 
 require "../afd/Estado.php";
 require "../afd/Transicao.php";
-require "../afd/Automato.php";
+require "../afd/AutomatoFactory.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $automato = new Automato();
-    $automato = $automato->getAutomatoPageFlow();
+    $automato = AutomatoFactory::getPageFlow();
     $next = $automato->getTransition($_SERVER['PHP_SELF'], $_POST['evento']);
 
     if($next != null) {
