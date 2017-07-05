@@ -26,7 +26,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <h3>login</h3>
         <form action="/pages/login.php" method="post">
             <select name="perfil">
-                <option value="student">Estudante</option>
+                <option value="student-beginner">Estudante - Iniciante</option>
+                <option value="student-advanced">Estudante - Avançado</option>
                 <option value="professor">Professor</option>
             </select>
             <br>
