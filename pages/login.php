@@ -2,11 +2,10 @@
 
 require "../afd/Estado.php";
 require "../afd/Transicao.php";
-require "../afd/Automato.php";
+require "../afd/AutomatoFactory.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $automato = new Automato();
-    $automato = $automato->getAutomatoPageFlow();
+    $automato = AutomatoFactory::getPageFlow();
     $next = $automato->getTransition($_SERVER['PHP_SELF'], "e1");
 
     if($next != null) {
@@ -26,7 +25,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <h3>login</h3>
         <form action="/pages/login.php" method="post">
             <select name="perfil">
-                <option value="student">Estudante</option>
+                <option value="student-beginner">Estudante - Iniciante</option>
+                <option value="student-advanced">Estudante - Avançado</option>
                 <option value="professor">Professor</option>
             </select>
             <br>
