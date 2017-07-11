@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 require "../afd/Estado.php";
 require "../afd/Transicao.php";
 require "../afd/AutomatoFactory.php";
@@ -9,7 +11,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $next = $automato->getTransition($_SERVER['PHP_SELF'], "e1");
 
     if($next != null) {
-        session_start();
         $_SESSION['perfil'] = $_POST['perfil'];
         header("Location: http://localhost" . $next->getDestino()->getId());
     }

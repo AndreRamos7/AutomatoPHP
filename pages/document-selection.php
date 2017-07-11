@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: gilson
- * Date: 30/06/17
- * Time: 11:03
- */
+session_start();
 ?>
 <html>
     <head>
@@ -30,7 +25,7 @@
     </head>
     <body>
         <div class="container jumbotron" id="cabecalho">
-            <?php echo "<h3>Document-selection</h3>"; ?>           
+            <h1>Document-selection: <?php echo $_SESSION['perfil'] ?></h1>
         </div>
         <div class="container">
             

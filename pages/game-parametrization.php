@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: gilson
- * Date: 30/06/17
- * Time: 11:03
- */
+session_start();
 ?>
 <html>
     <head>
@@ -31,7 +26,7 @@
     <body>
         
         <div class="container jumbotron" id="cabecalho">
-            <?php echo "<h1>Game-parametrization</h1>"; ?>           
+            <h1>Game-parametrization: <?php echo $_SESSION['perfil'] ?></h1>
         </div>
         <div class="container">
             <h4>Games </h4>

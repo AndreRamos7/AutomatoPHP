@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 require "../afd/Estado.php";
 require "../afd/Transicao.php";
 require "../afd/AutomatoFactory.php";
@@ -54,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </head>
     <body>
         <div class="container jumbotron" id="cabecalho">
-            <h1>Action Selection</h1>
+            <h1>Action Selection: <?php echo $_SESSION['perfil'] ?></h1>
         </div>
         <div class="container">
             <div class="row">
