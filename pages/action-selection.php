@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $next = $automato->getTransition($_SERVER['PHP_SELF'], $_POST['evento']);
 
     if($next != null) {
-        header("Location: http://localhost" . $next->getDestino()->getId());
+        header("Location: http://localhost:85" . $next->getDestino()->getId());
     }
 } else {
     $availabilitySupervisor = AutomatoFactory::getAvailabilitySupervisor();
