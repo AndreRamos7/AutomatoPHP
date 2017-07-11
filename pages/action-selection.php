@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $next = $automato->getTransition($_SERVER['PHP_SELF'], $_POST['evento']);
 
     if($next != null) {
-        header("Location: http://localhost:85" . $next->getDestino()->getId());
+        header("Location: http://localhost" . $next->getDestino()->getId());
     }
 } else {
     $availabilitySupervisor = AutomatoFactory::getAvailabilitySupervisor();
@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <option value="e4">Game Parametrization</option>
                             <option value="e5">Document Selection</option>
                         </select>
-                        <button type="submit"  class="btn btn-primary" >Selecionar</button>
+                        <button type="submit" <?php echo $availabilitySupervisor->geTransition()->getDestino()->getId() === 'qS1,3' ? 'disabled=disabled' : '' ?> class="btn btn-primary" >Selecionar</button>
                         <br>
                         <br>
                     </form>
