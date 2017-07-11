@@ -1,6 +1,7 @@
 <?php
 
 require 'Automato.php';
+require 'AutomatoDisponibilidade.php';
 
 class AutomatoFactory {
 
@@ -33,7 +34,7 @@ class AutomatoFactory {
     }
 
     public function getAvailabilitySupervisor() {
-        $automato = new Automato();
+        $automato = new AutomatoDisponibilidade();
 
         $automato->setEstado("qS1,1");
         $automato->setEstado("qS1,2");
@@ -45,9 +46,7 @@ class AutomatoFactory {
         $automato->setEstadosFinais("qS1,2");
         $automato->setEstadosFinais("qS1,3");
 
-        $automato->setTransition("qS1,1", "qS1,2","e3");
-        $automato->setTransition("qS1,1", "qS1,2","e4");
-        $automato->setTransition("qS1,1", "qS1,2","e5");
+        $automato->setTransition("qS1,1", "qS1,2","eN");
         $automato->setTransition("qS1,1", "qS1,3","eServer,1");
         $automato->setTransition("qS1,3", "qS1,1","eServer,2");
 

@@ -4,6 +4,8 @@ require "../afd/Estado.php";
 require "../afd/Transicao.php";
 require "../afd/AutomatoFactory.php";
 
+
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $automato = AutomatoFactory::getPageFlow();
     $next = $automato->getTransition($_SERVER['PHP_SELF'], $_POST['evento']);
@@ -11,6 +13,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if($next != null) {
         header("Location: http://localhost" . $next->getDestino()->getId());
     }
+} else {
+    $availabilitySupervisor = AutomatoFactory::getAvailabilitySupervisor();
 }
 
 ?>
@@ -26,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <option value="e4">Game Parametrization</option>
             <option value="e5">Document Selection</option>
         </select>
-        <button type="submit">Selecionar</button>
+        <button type="submit" <?php echo $availabilitySupervisor->geTransition()->getDestino()->getId() === 'qS1,3' ? 'disabled=disabled' : '' ?>>Selecionar</button>
         <br>
         <br>
     </form>
