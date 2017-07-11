@@ -5,6 +5,8 @@ session_start();
 require "afd/Estado.php";
 require "afd/Transicao.php";
 require "afd/Automato.php";
+ 
+header("Location: http://localhost:85/pages/login.php");
 
         if(!isset($_SESSION['ESTADO_ATUAL'])){
             $_SESSION['ESTADO_ATUAL'] = "login.php";
